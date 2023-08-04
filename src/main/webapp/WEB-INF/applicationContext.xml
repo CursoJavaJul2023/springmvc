@@ -29,9 +29,38 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
-	<context:component-scan base-package="cursojava.spring.springmvc" />
+	<context:component-scan base-package="cursojava.spring.springmvc,cursojava.jpahibernate.orm" />
 	
 	<mvc:annotation-driven />
+	
+	<!-- NO USAR PARA PRODUCCIÓN -->
+	<bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		p:driverClassName="org.postgresql.Driver"
+		p:url="jdbc:postgresql://localhost/curso"
+		p:username="curso"
+		p:password="Fedora2023"	
+	/>		
+	
+	<bean name="emf"  class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="cursojava.jpahibernate.orm.modelobanco.entidades,cursojava.jpahibernate.orm.modelobanco.dto" />
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean name="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="emf" />
+	</bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	
 
 </beans>
 
