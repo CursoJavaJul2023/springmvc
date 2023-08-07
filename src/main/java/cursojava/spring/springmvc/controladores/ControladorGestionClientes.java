@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,6 +35,15 @@ public class ControladorGestionClientes {
 	private RepositorioCliente repoCliente;
 	
 	private static Logger logger = LoggerFactory.getLogger(ControladorGestionClientes.class);
+	
+//	@ExceptionHandler(Exception.class)
+//	public ResponseEntity<?> gestionDeExcepcionesImprevistas(Exception e) {
+//		
+//		return ResponseEntity.internalServerError()
+//				.contentType(MediaType.TEXT_PLAIN)
+//				.body("Error de ejecución interceptado y registrado");
+//		
+//	}
 		
 	@GetMapping(
 //		path = "/modelobanco/v1/clientes/{nif:\\d{8}[A-Z]}",
@@ -41,6 +51,11 @@ public class ControladorGestionClientes {
 		produces = MediaType.APPLICATION_JSON_VALUE
 	)
 	public ResponseEntity<?> buscarPorNif(@PathVariable("nif") String nif) {
+		
+		// Para probar ExceptionHandler
+		if(nif.startsWith("1")) {
+			throw new IllegalArgumentException("No hay nif");
+		}
 				
 		try {
 			
