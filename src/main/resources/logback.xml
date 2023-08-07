@@ -38,12 +38,12 @@
     </appender>
     
     <!-- LOG everything at INFO level -->
-    <root level="debug">
+    <root level="off">
         <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
     </root>
   
-    <logger name="cursojava.spring.springmvc" level="debug" additivity="true">
+    <logger name="cursojava.spring.springmvc" level="debug" additivity="false">
         <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
     </logger>

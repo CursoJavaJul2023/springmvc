@@ -24,7 +24,7 @@ import cursojava.jpahibernate.orm.modelocompras.repositorios.RepositorioCompra;
 import cursojava.jpahibernate.orm.modelocompras.repositorios.RepositorioDetalleCompra;
 import cursojava.jpahibernate.orm.modelocompras.servicios.ServiciosModeloCompras;
 
-//@Service
+@Service
 @Transactional(rollbackFor = NegocioException.class)
 public class ServiciosModeloComprasBean implements ServiciosModeloCompras {
 	

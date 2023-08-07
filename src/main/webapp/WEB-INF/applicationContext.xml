@@ -41,9 +41,12 @@
 		p:password="Fedora2023"	
 	/>		
 	
-	<bean name="emf"  class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+	<bean name="entityManagerFactory"  class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="cursojava.jpahibernate.orm.modelobanco.entidades,cursojava.jpahibernate.orm.modelobanco.dto" />
+		<property name="packagesToScan" value="cursojava.jpahibernate.orm.modelobanco.entidades,
+											   cursojava.jpahibernate.orm.modelobanco.dto,
+											   cursojava.jpahibernate.orm.modelocompras.entidades,
+											   cursojava.jpahibernate.orm.modelocompras.dto" />
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 		</property>
@@ -56,11 +59,12 @@
 	</bean>
 	
 	<bean name="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="emf" />
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 	
 	<tx:annotation-driven transaction-manager="transactionManager" />
-	
+
+	<jpa:repositories base-package="cursojava.jpahibernate.orm.modelocompras.repositorios" />	
 
 </beans>
 
