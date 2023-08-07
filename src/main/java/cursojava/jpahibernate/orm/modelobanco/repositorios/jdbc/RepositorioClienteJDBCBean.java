@@ -126,6 +126,13 @@ public class RepositorioClienteJDBCBean implements RepositorioCliente {
 		
 		throw new NegocioException("Método sin implementar");
 	}
+
+	@Override
+	public void borrar(Cliente cliente) throws NegocioException {
+		
+		throw new NegocioException("Método sin implementar");
+		
+	}
 	
 	
 

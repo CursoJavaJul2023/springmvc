@@ -101,6 +101,24 @@ public class RepositorioClienteJPABean implements RepositorioCliente {
 			throw new NegocioException("No se pudo consultar clientes", e);
 		}
 	}
+	
+	@Override
+	public void borrar(Cliente cliente)throws NegocioException {
+		
+		try {		
+			
+			em.createNamedQuery("Cliente.borrar")
+			.setParameter("nif", cliente.getNif())
+			.executeUpdate();
+						
+		} catch (Exception e) {
+	
+			e.printStackTrace();
+			
+			throw new NegocioException("No se pudo borrar cliente", e);
+		}
+		
+	}
 
 }
 

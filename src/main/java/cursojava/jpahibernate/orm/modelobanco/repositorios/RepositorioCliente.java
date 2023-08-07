@@ -23,4 +23,6 @@ public interface RepositorioCliente {
 	@Transactional(readOnly = true)
 	List<Cliente> cargarTodosConCuentasAsignadas() throws NegocioException;
 
+	void borrar(Cliente cliente) throws NegocioException;
+
 }

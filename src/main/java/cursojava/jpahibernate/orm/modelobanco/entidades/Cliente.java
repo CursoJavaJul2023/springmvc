@@ -52,6 +52,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 		@NamedQuery(
 			name = "Cliente.leerTodosLosClientesConCuentas",
 			query = "select cte from Cliente cte left outer join fetch cte.cuentas cta"
+		),
+		@NamedQuery(
+			name = "Cliente.borrar",
+			query = "delete from Cliente cte where cte.nif = :nif"
 		)		
 	}
 )
